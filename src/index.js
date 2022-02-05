@@ -22,7 +22,6 @@ const mongoUri = "mongodb://abhayyadav:68700687@cluster0-shard-00-00.xewp9.mongo
 // }
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
-  useCreateIndex: true,
   useUnifiedTopology: true,
 });
 mongoose.connection.on("connected", () => {
@@ -36,6 +35,7 @@ app.get("/", requireAuth, (req, res) => {
   res.send(`Your email: ${req.user.email}`);
 });
 
-app.listen(3001, () => {
-  console.log("Listening on port 3001");
+let port = process.env.PORT || 3001
+app.listen(port, () => {
+  console.log("Listening on port "+ port);
 });
